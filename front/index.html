@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Accueil</title>
+    </head>
+    <body>
+        <label for="champion">Nom</label>
+        <input type="text" name="champion" />
+        <label for="type">Type</label>
+        <select name="type">
+            <option value="Controller">Controller</option>
+            <option value="Fighter">Fighter</option>
+            <option value="Mage">Mage</option>
+            <option value="Marksman">Marksman</option>
+            <option value="Slayer">Slayer</option>
+            <option value="Tank">Tank</option>
+            <option value="Specialist">Specialist</option>
+        </select>
+        <button onclick="createChampion()">New Champion</button>
+        <button id="importChampionsButton">Import Champions</button>
+        <h1>Liste des champions</h1>
+        <div id="champions"></div>
+
+        <script>
+            fetch("http://localhost:3000/champions")
+                .then((response) => response.json())
+                .then((data) => {
+                    const championsDiv = document.getElementById("champions");
+                    data.forEach((champion) => {
+                        const championArticle =
+                            document.createElement("article");
+                        championArticle.innerHTML = `
+                            <a href="champion.html?id=${champion.id}">
+                                <h2>${champion.name}</h2>
+                            </a>
+                            <p>${champion.type}</p>
+                        `;
+                        championsDiv.appendChild(championArticle);
+                    });
+                });
+            const createChampion = () => {
+                let champion = document.querySelector(
+                    'input[name="champion"]'
+                ).value;
+                let type = document.querySelector('select[name="type"]').value;
+
+                let response = fetch("http://localhost:3000/champions", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ name: champion, type: type }),
+                });
+                window.location.href = "index.html";
+            };
+        </script>
+
+        <script type="module">
+            import { seedChampions } from "../back/scripts/seedChampions.js";
+
+            const importChampionsButton = document.getElementById(
+                "importChampionsButton"
+            );
+
+            importChampionsButton.addEventListener("click", async () => {
+                await seedChampions();
+            });
+        </script>
+    </body>
+</html>

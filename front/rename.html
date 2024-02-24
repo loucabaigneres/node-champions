@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="text" name="champion" />
+        <button type="button" onclick="updateChampion()">Renommer</button>
+        <script>
+            let url = window.location.search;
+            let id = new URLSearchParams(url).get("id");
+
+            fetch(`http://localhost:3000/champions/${id}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    let champion = document.querySelector(
+                        'input[name="champion"]'
+                    );
+                    champion.value = data.name;
+                });
+
+            const updateChampion = () => {
+                let champion = document.querySelector(
+                    'input[name="champion"]'
+                ).value;
+
+                let response = fetch(`http://localhost:3000/champions/${id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ name: champion }),
+                });
+                window.location.href = "index.html";
+            };
+        </script>
+    </body>
+</html>
