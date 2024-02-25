@@ -1,0 +1,128 @@
+@font-face {
+    font-family: "Beaufort for LOL";
+    src: url(../assets/fonts/beaufort_for_LOL/BeaufortforLOL-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Beaufort for LOL";
+    src: url(../assets/fonts/beaufort_for_LOL/BeaufortforLOL-Italic.ttf);
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Beaufort for LOL";
+    src: url(../assets/fonts/beaufort_for_LOL/BeaufortforLOL-Bold.ttf);
+    font-weight: bold;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    color: white;
+}
+
+a {
+    color: inherit;
+}
+
+body {
+    font-family: "Beaufort for LOL", sans-serif;
+    font-size: 16px;
+    background-image: url(../assets/images/invoc.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 48px;
+    background-color: #111111;
+}
+
+nav {
+    display: flex;
+    gap: 24px;
+    color: white;
+}
+
+main {
+    position: relative;
+}
+
+h1 {
+    padding-top: 24px;
+    text-align: center;
+    font-style: italic;
+    color: black;
+}
+
+h1 > span {
+    font-size: 2.5em;
+    color: black;
+}
+
+#importChampionsButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(11, 196, 226);
+    border: none;
+    border-radius: 12px;
+    padding: 8px 16px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#champions {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 24px;
+}
+
+#champions > article {
+    flex-basis: 18%;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    margin-right: 2.5%;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#champions > article:nth-child(5n) {
+    margin-right: 0;
+}
+
+#champions > article > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding-top: 12px;
+    text-align: center;
+}
+
+#champions > article > a {
+    width: 100%;
+    background-color: rgb(6, 28, 37);
+    border-radius: 0 0 12px 12px;
+    padding: 8px;
+    font-style: italic;
+    transition: 300ms;
+}
+
+#champions > article > a:hover {
+    background-color: rgb(0, 102, 128);
+    padding-left: 16px;
+}

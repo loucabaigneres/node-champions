@@ -1,31 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Accueil</title>
+
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <a href="signup.html">Register</a>
-        <a href="login.html">Login</a>
-        <form id="createChampionForm">
-            <label for="champion">Nom</label>
-            <input type="text" name="champion" />
-            <label for="type">Type</label>
-            <select name="type">
-                <option value="Controller">Controller</option>
-                <option value="Fighter">Fighter</option>
-                <option value="Mage">Mage</option>
-                <option value="Marksman">Marksman</option>
-                <option value="Slayer">Slayer</option>
-                <option value="Tank">Tank</option>
-                <option value="Specialist">Specialist</option>
-            </select>
-            <button onclick="createChampion()">New Champion</button>
-        </form>
-        <button id="importChampionsButton">Import Champions</button>
-        <h1>Liste des champions</h1>
-        <div id="champions"></div>
+        <header>
+            <a href="index.html">
+                <img
+                    src="assets/images/League-of-Legends-Logo.png"
+                    alt="Logo LoL"
+                    width="150px"
+                />
+            </a>
+            <button id="importChampionsButton">IMPORTER LES CHAMPIONS</button>
+            <nav>
+                <a href="index.html">ACCUEIL</a>
+                <a href="signup.html">REGISTER</a>
+                <a href="login.html">CONNEXION</a>
+            </nav>
+        </header>
+        <main>
+            <form id="createChampionForm">
+                <label for="champion">Nom</label>
+                <input type="text" name="champion" />
+                <label for="type">Type</label>
+                <select name="type">
+                    <option value="Controller">Controller</option>
+                    <option value="Fighter">Fighter</option>
+                    <option value="Mage">Mage</option>
+                    <option value="Marksman">Marksman</option>
+                    <option value="Slayer">Slayer</option>
+                    <option value="Tank">Tank</option>
+                    <option value="Specialist">Specialist</option>
+                </select>
+                <button onclick="createChampion()">New Champion</button>
+            </form>
+            <h1>
+                CHOISISSEZ VOTRE
+                <br />
+                <span> CHAMPION </span>
+            </h1>
+            <div id="champions"></div>
+        </main>
 
         <script>
             fetch("http://localhost:3000/champions")
@@ -36,10 +56,13 @@
                         const championArticle =
                             document.createElement("article");
                         championArticle.innerHTML = `
-                            <a href="champion.html?id=${champion.id}">
-                                <h2>${champion.name}</h2>
-                            </a>
-                            <p>${champion.type}</p>
+                            <div>
+                                <a href="champion.html?id=${champion.id}">
+                                    <h2>${champion.name}</h2>
+                                </a>
+                                <p>${champion.type}</p>
+                            </div>
+                            <a href="champion.html?id=${champion.id}">VOIR PLUS</a>
                         `;
                         championsDiv.appendChild(championArticle);
                     });
