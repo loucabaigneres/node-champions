@@ -24,26 +24,37 @@
             </nav>
         </header>
         <main>
-            <form id="createChampionForm">
-                <label for="champion">Nom</label>
-                <input type="text" name="champion" />
-                <label for="type">Type</label>
-                <select name="type">
-                    <option value="Controller">Controller</option>
-                    <option value="Fighter">Fighter</option>
-                    <option value="Mage">Mage</option>
-                    <option value="Marksman">Marksman</option>
-                    <option value="Slayer">Slayer</option>
-                    <option value="Tank">Tank</option>
-                    <option value="Specialist">Specialist</option>
-                </select>
-                <button onclick="createChampion()">New Champion</button>
-            </form>
-            <h1>
-                CHOISISSEZ VOTRE
-                <br />
-                <span> CHAMPION </span>
-            </h1>
+            <div class="top-main">
+                <form id="createChampionForm">
+                    <div>
+                        <label for="champion">Nom</label>
+                        <input type="text" name="champion" />
+                    </div>
+                    <div>
+                        <label for="type">Type</label>
+                        <select name="type">
+                            <option value="Controller">Controller</option>
+                            <option value="Fighter">Fighter</option>
+                            <option value="Mage">Mage</option>
+                            <option value="Marksman">Marksman</option>
+                            <option value="Slayer">Slayer</option>
+                            <option value="Tank">Tank</option>
+                            <option value="Specialist">Specialist</option>
+                        </select>
+                    </div>
+                    <button
+                        class="createChampionButton"
+                        onclick="createChampion()"
+                    >
+                        New Champion
+                    </button>
+                </form>
+                <h1>
+                    CHOISISSEZ VOTRE
+                    <br />
+                    <span> CHAMPION </span>
+                </h1>
+            </div>
             <div id="champions"></div>
         </main>
 

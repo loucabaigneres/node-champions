@@ -4,14 +4,31 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Champion</title>
+
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
+        <header class="home">
+            <a href="index.html">
+                <img
+                    src="assets/images/League-of-Legends-Logo.png"
+                    alt="Logo LoL"
+                    width="150px"
+                />
+            </a>
+            <button id="importChampionsButton">IMPORTER LES CHAMPIONS</button>
+            <nav>
+                <a href="index.html">ACCUEIL</a>
+                <a href="signup.html">REGISTER</a>
+                <a href="login.html">CONNEXION</a>
+            </nav>
+        </header>
         <div id="champion">
-            <small id="id">ID</small>
+            <small id="id" style="display: none;"></small>
             <h1 id="name">Name</h1>
             <p id="type">Type</p>
             <a id="renameLink">Renommer</a>
-            <a href="index.html">Retour</a>
+            <a class="back" href="index.html">Retour</a>
         </div>
         <button id="deleteButton" onclick="deleteChampion()">Supprimer</button>
         <script>
