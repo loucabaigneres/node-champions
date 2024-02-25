@@ -6,8 +6,14 @@
         <title>Champion</title>
     </head>
     <body>
-        <div id="champion"></div>
-        <button onclick="deleteChampion()">Supprimer</button>
+        <div id="champion">
+            <small id="id">ID</small>
+            <h1 id="name">Name</h1>
+            <p id="type">Type</p>
+            <a id="renameLink">Renommer</a>
+            <a href="index.html">Retour</a>
+        </div>
+        <button id="deleteButton" onclick="deleteChampion()">Supprimer</button>
         <script>
             let url = window.location.search;
             let id = new URLSearchParams(url).get("id");
@@ -15,15 +21,24 @@
             fetch(`http://localhost:3000/champions/${id}`)
                 .then((response) => response.json())
                 .then((data) => {
-                    let champion = document.querySelector("#champion");
-                    champion.innerHTML = `
-                        <small>${data.id}</small>
-                        <h1>${data.name}</h1>
-                        <p>${data.type}</p>
-                        <a href="rename.html?id=${data.id}">Renommer</a>
-                        <a href="index.html">Retour</a>
-                    `;
+                    const id = document.getElementById("id");
+                    const name = document.getElementById("name");
+                    const type = document.getElementById("type");
+                    const renameLink = document.getElementById("renameLink");
+
+                    id.innerHTML = `ID: ${data.id}`;
+                    name.innerHTML = data.name;
+                    type.innerHTML = data.type;
+                    renameLink.href = `rename.html?id=${data.id}`;
                 });
+
+            const renameLink = document.getElementById("renameLink");
+            const deleteButton = document.getElementById("deleteButton");
+            const token = localStorage.getItem("token");
+            if (!token) {
+                renameLink.style.display = "none";
+                deleteButton.style.display = "none";
+            }
 
             const deleteChampion = async () => {
                 let response = await fetch(

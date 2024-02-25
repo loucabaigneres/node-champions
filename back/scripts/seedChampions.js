@@ -1,15 +1,15 @@
 import { PrismaClient } from "@prisma/client";
-import { readFile } from "fs/promises";
+import fs from "fs";
 
 const prisma = new PrismaClient();
 
-export const seedChampions = async () => {
-    try {
-        const championsData = JSON.parse(
-            await readFile("../back/data/champions.json", "utf-8")
-        );
+const seedChampions = async () => {
+    const champions = JSON.parse(
+        fs.readFileSync("../back/data/champions.json", "utf-8")
+    );
 
-        for (const champion of championsData) {
+    try {
+        for (const champion of champions) {
             await prisma.champion.create({
                 data: {
                     name: champion.name,
@@ -21,9 +21,11 @@ export const seedChampions = async () => {
         console.log("Champions seed successful!");
     } catch (error) {
         console.error("Error seeding champions:", error);
-    } finally {
-        await prisma.$disconnect();
     }
 };
 
-seedChampions();
+export { seedChampions };
+
+if (process.env.RUN_SEED) {
+    seedChampions();
+}

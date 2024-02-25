@@ -6,19 +6,23 @@
         <title>Accueil</title>
     </head>
     <body>
-        <label for="champion">Nom</label>
-        <input type="text" name="champion" />
-        <label for="type">Type</label>
-        <select name="type">
-            <option value="Controller">Controller</option>
-            <option value="Fighter">Fighter</option>
-            <option value="Mage">Mage</option>
-            <option value="Marksman">Marksman</option>
-            <option value="Slayer">Slayer</option>
-            <option value="Tank">Tank</option>
-            <option value="Specialist">Specialist</option>
-        </select>
-        <button onclick="createChampion()">New Champion</button>
+        <a href="signup.html">Register</a>
+        <a href="login.html">Login</a>
+        <form id="createChampionForm">
+            <label for="champion">Nom</label>
+            <input type="text" name="champion" />
+            <label for="type">Type</label>
+            <select name="type">
+                <option value="Controller">Controller</option>
+                <option value="Fighter">Fighter</option>
+                <option value="Mage">Mage</option>
+                <option value="Marksman">Marksman</option>
+                <option value="Slayer">Slayer</option>
+                <option value="Tank">Tank</option>
+                <option value="Specialist">Specialist</option>
+            </select>
+            <button onclick="createChampion()">New Champion</button>
+        </form>
         <button id="importChampionsButton">Import Champions</button>
         <h1>Liste des champions</h1>
         <div id="champions"></div>
@@ -40,6 +44,14 @@
                         championsDiv.appendChild(championArticle);
                     });
                 });
+
+            const createChampionForm =
+                document.getElementById("createChampionForm");
+            const token = localStorage.getItem("token");
+            if (!token) {
+                createChampionForm.style.display = "none";
+            }
+
             const createChampion = () => {
                 let champion = document.querySelector(
                     'input[name="champion"]'
@@ -53,19 +65,27 @@
                     },
                     body: JSON.stringify({ name: champion, type: type }),
                 });
-                window.location.href = "index.html";
+                window.location.reload();
             };
         </script>
 
-        <script type="module">
-            import { seedChampions } from "../back/scripts/seedChampions.js";
-
+        <script>
             const importChampionsButton = document.getElementById(
                 "importChampionsButton"
             );
 
             importChampionsButton.addEventListener("click", async () => {
-                await seedChampions();
+                try {
+                    const response = await fetch(
+                        "http://localhost:3000/champions/seed",
+                        {
+                            method: "POST",
+                        }
+                    );
+                    window.location.reload();
+                } catch (error) {
+                    console.error("Error sending champions:", error);
+                }
             });
         </script>
     </body>
