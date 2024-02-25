@@ -4,14 +4,34 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Log In</title>
+        *
+
+        <link rel="stylesheet" href="css/style.css" />
     </head>
-    <body>
-        <form>
-            <label for="email">Email</label>
-            <input type="email" name="email" />
-            <label for="password">Password</label>
-            <input type="password" name="password" />
-            <button onclick="logIn()">Log In</button>
+    <body class="user-background">
+        <header class="user-header">
+            <img
+                src="assets/images/riot-logo.svg"
+                alt="Logo Riot Games"
+                width="100px"
+            />
+        </header>
+        <form class="userForm">
+            <div>
+                <label for="email">EMAIL</label>
+                <input type="email" name="email" />
+            </div>
+            <div>
+                <label for="password">MOT DE PASSE</label>
+                <input type="password" name="password" />
+            </div>
+            <button class="userFormButton" onclick="logIn()">
+                <img
+                    src="assets/icons/fleche-droite.svg"
+                    alt="S'INSCRIRE"
+                    width="36px"
+                />
+            </button>
         </form>
 
         <script>

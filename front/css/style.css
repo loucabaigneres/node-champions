@@ -21,7 +21,6 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
-    color: white;
 }
 
 a {
@@ -34,15 +33,30 @@ body {
     background-image: url(../assets/images/invoc.webp);
     background-size: cover;
     background-repeat: no-repeat;
+    min-height: 100vh;
 }
 
-header {
+.user-background {
+    background-image: url(../assets/images/user.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header.home {
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-inline: 48px;
     background-color: #111111;
+}
+
+.user-header {
+    width: 100%;
+    padding: 48px;
 }
 
 nav {
@@ -91,6 +105,7 @@ h1 > span {
     flex-basis: 18%;
     height: 150px;
     background-color: rgba(0, 0, 0, 0.5);
+    color: white;
     border-radius: 12px;
     margin-right: 2.5%;
     margin-bottom: 40px;
@@ -125,4 +140,57 @@ h1 > span {
 #champions > article > a:hover {
     background-color: rgb(0, 102, 128);
     padding-left: 16px;
+}
+
+.userForm {
+    /* width: 500px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 32px;
+    background-color: white;
+    color: black;
+}
+
+.userForm > div {
+    min-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.userForm > div > label {
+    font-weight: bold;
+}
+
+.userForm > div > input {
+    background-color: rgba(186, 186, 186, 0.3);
+    padding: 12px;
+    border-radius: 2px;
+    border: none;
+    transition: 300ms;
+}
+
+.userForm > div > input:focus {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.userForm > .userFormButton {
+    margin-top: 16px;
+    background-color: rgb(11, 196, 226);
+    padding: 16px;
+    border: none;
+    border-radius: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 300ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userForm > .userFormButton:hover {
+    background-color: rgb(0, 166, 207);
 }
